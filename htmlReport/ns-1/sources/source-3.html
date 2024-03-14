@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GameHistory</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">model</a>
+</div>
+
+<h1>Coverage Summary for Class: GameHistory (model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameHistory</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    70.8%
+  </span>
+  <span class="absValue">
+    (17/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package model;
+&nbsp;
+&nbsp;import exceptions.EmptyHistoryException;
+&nbsp;import org.json.JSONArray;
+&nbsp;import org.json.JSONObject;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;
+&nbsp;// JSON-related methods inspired by provided phase 2 example project :
+&nbsp;// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+&nbsp;
+&nbsp;// list of previous games
+&nbsp;public class GameHistory {
+&nbsp;
+&nbsp;    private ArrayList&lt;CompletedPlayingGrid&gt; history;
+&nbsp;
+&nbsp;    // EFFECT: creates an empty list of games.
+<b class="fc">&nbsp;    public GameHistory() {</b>
+<b class="fc">&nbsp;        this.history = new ArrayList&lt;CompletedPlayingGrid&gt;();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECT: returns rounded down percent of games won by player 1.
+&nbsp;    //          will throw EmptyHistoryException if now games have been played yet/loGames is empty
+&nbsp;    public float findP1WinProportions() throws EmptyHistoryException {
+<b class="fc">&nbsp;        if (history.isEmpty()) {</b>
+<b class="fc">&nbsp;            throw new EmptyHistoryException();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        int countP1 = 0;</b>
+<b class="fc">&nbsp;        int countP2 = 0;</b>
+<b class="fc">&nbsp;        for (CompletedPlayingGrid pg: history) {</b>
+<b class="fc">&nbsp;            if (pg.getWinner()) {</b>
+<b class="fc">&nbsp;                countP1++;</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                countP2++;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        int total = countP1 + countP2;</b>
+<b class="fc">&nbsp;        return (countP1 * 100 / total);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECT: returns this list of Game/history
+&nbsp;    public ArrayList&lt;CompletedPlayingGrid&gt; getHistory() {
+<b class="fc">&nbsp;        return this.history;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECT: returns a specific game
+&nbsp;    public CompletedPlayingGrid indexList(int index) {
+<b class="fc">&nbsp;        return history.get(index);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // MODIFIES: this
+&nbsp;    // EFFECT adds a game to history
+&nbsp;    public void addGame(CompletedPlayingGrid pg) {
+<b class="fc">&nbsp;        history.add(pg);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    // JSON-related methods inspired by provided phase 2 example project :
+&nbsp;    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+&nbsp;
+&nbsp;    // EFFECT: returns the size of the list of games
+&nbsp;    public int getHistorySize() {
+<b class="fc">&nbsp;        return history.size();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public JSONObject turnHistoryToJson() {
+<b class="nc">&nbsp;        JSONObject jsonObject = new JSONObject();</b>
+<b class="nc">&nbsp;        JSONArray jsonHistory = new JSONArray();</b>
+&nbsp;
+<b class="nc">&nbsp;        for (CompletedPlayingGrid grid : this.history) {</b>
+<b class="nc">&nbsp;            jsonHistory.put(grid.fullGridToJson());</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        jsonObject.put(&quot;history&quot;, jsonHistory);</b>
+<b class="nc">&nbsp;        return jsonObject;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-03-05 17:45</div>
+</div>
+</body>
+</html>

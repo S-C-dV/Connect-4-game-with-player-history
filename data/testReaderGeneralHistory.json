@@ -1,0 +1,145 @@
+{
+  "history": [
+    {
+      "grid": [
+        [],
+        [],
+        [],
+        [
+          {
+            "isPlayer1": true,
+            "row": 0
+          }
+        ],
+        [
+          {
+            "isPlayer1": false,
+            "row": 0
+          },
+          {
+            "isPlayer1": false,
+            "row": 1
+          },
+          {
+            "isPlayer1": false,
+            "row": 2
+          },
+          {
+            "isPlayer1": false,
+            "row": 3
+          }
+        ],
+        [
+          {
+            "isPlayer1": true,
+            "row": 0
+          },
+          {
+            "isPlayer1": true,
+            "row": 1
+          }
+        ],
+        [
+          {
+            "isPlayer1": true,
+            "row": 0
+          }
+        ]
+      ],
+      "isPlayer1Winner": false
+    },
+    {
+      "grid": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "isPlayer1Winner": false
+    },
+    {
+      "grid": [
+        [
+          {
+            "isPlayer1": true,
+            "row": 0
+          }
+        ],
+        [
+          {
+            "isPlayer1": true,
+            "row": 0
+          },
+          {
+            "isPlayer1": false,
+            "row": 1
+          },
+          {
+            "isPlayer1": true,
+            "row": 2
+          }
+        ],
+        [
+          {
+            "isPlayer1": false,
+            "row": 0
+          },
+          {
+            "isPlayer1": true,
+            "row": 1
+          }
+        ],
+        [
+          {
+            "isPlayer1": true,
+            "row": 0
+          },
+          {
+            "isPlayer1": false,
+            "row": 1
+          },
+          {
+            "isPlayer1": true,
+            "row": 2
+          },
+          {
+            "isPlayer1": false,
+            "row": 3
+          },
+          {
+            "isPlayer1": true,
+            "row": 4
+          },
+          {
+            "isPlayer1": true,
+            "row": 5
+          }
+        ],
+        [
+          {
+            "isPlayer1": false,
+            "row": 0
+          },
+          {
+            "isPlayer1": false,
+            "row": 1
+          },
+          {
+            "isPlayer1": false,
+            "row": 2
+          },
+          {
+            "isPlayer1": false,
+            "row": 3
+          }
+        ],
+        [],
+        []
+      ],
+      "isPlayer1Winner": false
+    }
+  ]
+}
