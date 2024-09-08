@@ -10,7 +10,13 @@ A *bulleted* list:
 An example of text with **bold** and *italic* fonts.-->
 
 
-## Task 2: Motivations
+
+https://github.com/user-attachments/assets/8df172c5-af71-44ab-8b41-213e6ce26d08
+
+
+
+
+##  Motivations
 <!What will the application do?>
 <!Who will use it?>
 <!Why is this project of interest to you?>
@@ -18,8 +24,7 @@ An example of text with **bold** and *italic* fonts.-->
 
 In this project, I will build a connect 4 game and allow the player to see a history of their previously-played
 games. 2 players will take turns placing coins in the grid, and when the game is over they can view
-their previous boards with who won and what the final board looked like, as well as the proportion of wins for 
-each player. 
+their previous boards with who won and what the final board looked like.
 
 This will therefore simply be a game made for 2 people in need of a distraction, with the desire to have the opportunity
 to learn from their moves by keeping a record of their techniques. This ability to keep a record
@@ -27,7 +32,7 @@ of the games in an accessible manner is what drew me to this project, as I am fr
 online versions of the game.
 
 
-## Task 3: User Stories
+## User Stories
 <!--There is at least one user story that involves the user adding an X to a Y (e.g. adding an item to a to-do list),
 where X and Y are classes that you will have to design yourself
 
