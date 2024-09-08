@@ -191,7 +191,7 @@ public class Player {
 
     // EFFECT: returns isPlayer1
     public boolean getPlayer() {
-        return this.player == "Player 1";
+        return this.player.equals("Player 1");
     }
 }
 

@@ -3,7 +3,6 @@ package ui;
 import exceptions.EmptyHistoryException;
 import model.CompletedPlayingGrid;
 import model.GameHistory;
-import model.PlayingGrid;
 
 // runs the game history/list of previous games
 public class RunGameHistory {

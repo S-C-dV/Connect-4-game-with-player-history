@@ -30,7 +30,7 @@ public class PlayingGridTest extends CompletedPlayingGridTest {
         Coin coin1 = game.getColIndexed(0,0);
 
         assertEquals(0, coin1.getRow());
-        assertEquals(true, coin1.getPlayer());
+        assertTrue(coin1.getPlayer());
 
 
         game.addCoinToCol(0,false);
@@ -38,7 +38,7 @@ public class PlayingGridTest extends CompletedPlayingGridTest {
         Coin coin2 = game.getColIndexed(0,1);
 
         assertEquals(1, coin2.getRow());
-        assertEquals(false, coin2.getPlayer());
+        assertFalse(coin2.getPlayer());
     }
 
     // test add coin to reach draw count

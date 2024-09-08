@@ -6,7 +6,6 @@ import model.GameHistory;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +18,7 @@ public class JsonReaderTest {
     public void testReadFileNotExist() {
         JsonReader reader = new JsonReader("./data/notRealFile.json");
         try {
-            GameHistory gh = reader.read();
+            reader.read();
             fail("no file exists, should throw exception");
         } catch (IOException ioe) {
 
@@ -66,7 +65,7 @@ public class JsonReaderTest {
         assertEquals(0, grid1.getColSize(0));
         assertEquals(4, grid1.getColSize(4));
         assertEquals(2, grid1.getColSize(5));
-        boolean idk = grid1.isPlayer2Winner();
+        grid1.isPlayer2Winner();
         assertFalse(grid1.getColIndexed(4,0).getPlayer());
 
         // test grid 2

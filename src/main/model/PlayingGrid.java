@@ -1,8 +1,6 @@
 package model;
 
 
-import static java.lang.String.valueOf;
-
 // Simpler Board/Grid of a completed game
 public class PlayingGrid extends CompletedPlayingGrid {
 
