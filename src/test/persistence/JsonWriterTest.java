@@ -62,8 +62,8 @@ public class JsonWriterTest {
             GameHistory test = reader.read();
             assertEquals(2, test.getHistorySize());
             assertEquals(50.0, test.findP1WinProportions());
-            assertFalse(test.indexList(0).getWinner());
-            assertTrue(test.indexList(1).getWinner());
+            assertTrue(test.indexList(0).isPlayer2Winner());
+            assertTrue(test.indexList(1).isPlayer1Winner());
 
         } catch (IOException ioe) {
             fail("no exception should have been thrown");
@@ -84,7 +84,7 @@ public class JsonWriterTest {
         game.addCoinToCol(4, false);
         game.addCoinToCol(4, true);
         game.addCoinToCol(5, false);
-        game.setWinner(false);
+        game.setWinner("Player 2");
 
         return game;
     }
@@ -106,7 +106,7 @@ public class JsonWriterTest {
         game.addCoinToCol(2, true);
         game.addCoinToCol(0, false);
         game.addCoinToCol(2, true);
-        game.setWinner(true);
+        game.setWinner("Player 1");
 
         return game;
     }

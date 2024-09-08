@@ -27,16 +27,27 @@ public class GameHistory {
             throw new EmptyHistoryException();
         }
         int countP1 = 0;
+        for (CompletedPlayingGrid pg: history) {
+            if (pg.isPlayer1Winner()) {
+                countP1++;
+            }
+        }
+        int total = history.size();
+        return (countP1 * 100 / total);
+    }
+
+    public float findP2WinProportions() throws EmptyHistoryException {
+        if (history.isEmpty()) {
+            throw new EmptyHistoryException();
+        }
         int countP2 = 0;
         for (CompletedPlayingGrid pg: history) {
-            if (pg.getWinner()) {
-                countP1++;
-            } else {
+            if (pg.isPlayer2Winner()) {
                 countP2++;
             }
         }
-        int total = countP1 + countP2;
-        return (countP1 * 100 / total);
+        int total = history.size();
+        return (countP2 * 100 / total);
     }
 
 
@@ -56,9 +67,28 @@ public class GameHistory {
         return jsonObject;
     }
 
-    // MODIFIES: this
-    // EFFECT adds a game to history
+    //EFFECT: returns list of games won by specified player
+    public ArrayList<CompletedPlayingGrid> getWinnerGames(String player) {
+        ArrayList<CompletedPlayingGrid> editedHistory = new ArrayList<>();
+        for (CompletedPlayingGrid game : this.history) {
+            if (player.equals(game.getWinner())) {
+                editedHistory.add(game);
+            }
+        }
+        addEvent(player);
+        return editedHistory;
+    }
+
+    // MODIFIES: EventLog
+    // EFFECTS: logs event that you're filtering for a specific winner
+    private void addEvent(String player) {
+        EventLog.getInstance().logEvent(new Event("Filtering history for games won by " + player));
+    }
+
+    // MODIFIES: this, EventLog
+    // EFFECTS: adds a game to history, logs the event
     public void addGame(CompletedPlayingGrid pg) {
+        EventLog.getInstance().logEvent(new Event("Game added to history"));
         history.add(pg);
     }
 

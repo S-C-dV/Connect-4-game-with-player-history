@@ -29,7 +29,7 @@ public class RunGameHistory {
     private Boolean generateProportions() {
         try {
             float propP1 = history.findP1WinProportions();
-            float propP2 = 100 - propP1;
+            float propP2 = history.findP2WinProportions();
             String statement = "Player 1 has won " + propP1 + "% of games, and Player 2 has won " + propP2
                     + "% of games.";
             System.out.println(statement);
@@ -43,10 +43,10 @@ public class RunGameHistory {
     // EFFECT: determines winner and call for board to be printed
     private void generateGames() {
         for (CompletedPlayingGrid pg: history.getHistory()) {
-            if (pg.getWinner()) {
-                System.out.println("Player 1 won this game.");
+            if (pg.isPlayer1Winner() | pg.isPlayer2Winner()) {
+                System.out.println(pg.getWinner() + " won this game");
             } else {
-                System.out.println("Player 2 won this game.");
+                System.out.println("This game ended in a tie");
             }
             printOutGame(pg);
         }

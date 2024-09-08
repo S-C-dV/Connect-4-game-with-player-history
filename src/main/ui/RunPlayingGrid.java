@@ -76,7 +76,7 @@ public class RunPlayingGrid {
     // MODIFIES: this
     // EFFECT: Processes changes to PlayingGrid when a player has won.
     private void processWInput() {
-        currentGame.setWinner(!player1Turn);
+        currentGame.setWinner(currentGame.getPlayerRepresentation(!player1Turn));
         this.stillPlaying = false;
         if (player1Turn) {
             System.out.println("Player 2 wins!");
@@ -142,13 +142,9 @@ public class RunPlayingGrid {
     // MODIFIES: this
     // EFFECT: processes win for the game
     private void processWin() {
-        currentGame.setWinner(player1Turn);
+        currentGame.setWinner(currentGame.getPlayerRepresentation(player1Turn));
         this.stillPlaying = false;
-        if (player1Turn) {
-            System.out.println("Player 1 wins!");
-        } else {
-            System.out.println("Player 2 wins!");
-        }
+        System.out.println(currentGame.getPlayerRepresentation(player1Turn) + " wins!");
     }
 
     // REQUIRES: stillPlaying is false / the game is over and there is a winner

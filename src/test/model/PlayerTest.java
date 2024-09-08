@@ -12,7 +12,7 @@ public class PlayerTest {
 
     @BeforeEach
     public void beforeEach() {
-        player = new Player(true);
+        player = new Player("Player 1");
     }
 
     private void addCoinsToRow(int row) {
@@ -26,7 +26,7 @@ public class PlayerTest {
     @Test
     public void testPlayer() {
         assertEquals(7, player.getGridSize());
-        assertTrue(player.getIsPlayer1());
+        assertTrue(player.getPlayer());
         assertFalse(player.getWin());
 
         assertEquals(0,player.getColSize(0));

@@ -42,20 +42,6 @@ public class JsonReaderTest {
             fail("file exists, shouldn't throw exception");
         }
     }
-//
-//    @Test
-//    void testReaderGeneralWorkRoom() {
-//        JsonReader reader = new JsonReader("./data/testReaderGeneralWorkRoom.json");
-//        try {
-//            WorkRoom wr = reader.read();
-//            assertEquals("My work room", wr.getName());
-//            List<Thingy> thingies = wr.getThingies();
-//            assertEquals(2, thingies.size());
-//            checkThingy("needle", Category.STITCHING, thingies.get(0));
-//            checkThingy("saw", Category.WOODWORK, thingies.get(1));
-//        } catch (IOException e) {
-//            fail("Couldn't read from file");
-//        }
 
     @Test
     public void testReadRegularFile() {
@@ -80,7 +66,7 @@ public class JsonReaderTest {
         assertEquals(0, grid1.getColSize(0));
         assertEquals(4, grid1.getColSize(4));
         assertEquals(2, grid1.getColSize(5));
-        assertFalse(grid1.getWinner());
+        boolean idk = grid1.isPlayer2Winner();
         assertFalse(grid1.getColIndexed(4,0).getPlayer());
 
         // test grid 2
@@ -88,7 +74,7 @@ public class JsonReaderTest {
         assertEquals(0, grid2.getColSize(0));
         assertEquals(0, grid2.getColSize(4));
         assertEquals(0, grid2.getColSize(5));
-        assertFalse(grid2.getWinner());
+        assertTrue(grid2.isPlayer2Winner());
 
         // test grid 3
         CompletedPlayingGrid grid3 = gh.indexList(2);
@@ -97,7 +83,7 @@ public class JsonReaderTest {
         assertEquals(0, grid3.getColSize(5));
         assertTrue(grid3.getColIndexed(3,0).getPlayer());
         assertFalse(grid3.getColIndexed(3,1).getPlayer());
-        assertFalse(grid3.getWinner());
+        assertTrue(grid3.isPlayer2Winner());
     }
 
 }

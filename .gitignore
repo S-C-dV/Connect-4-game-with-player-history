@@ -1,2 +1,9 @@
 *.class
 workspace.xml
+
+#want to add such that you can play games without loading history, and then load history
+#with choice to add played games to back of file history
+
+#be able to see a step by step of each game?/ of game just after it's finished?
+
+#make history a singleton pattern

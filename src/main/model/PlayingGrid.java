@@ -7,16 +7,20 @@ import static java.lang.String.valueOf;
 public class PlayingGrid extends CompletedPlayingGrid {
 
     private Boolean gameOver;
+    private int plays;
 
     private Player player1;
     private Player player2;
 
-    // EFFECT: creates a new game grid with players and list of columns
+    // MODIFIES: EventLog
+    // EFFECT: creates a new game grid with players and list of columns, logs the start of the new game
     public PlayingGrid() {
         super();
-        player1 = new Player(true);
-        player2 = new Player(false);
+        player1 = new Player(getPlayerRepresentation(true));
+        player2 = new Player(getPlayerRepresentation(false));
         gameOver = false;
+        super.winner = "neither";
+        EventLog.getInstance().logEvent(new Event("New game started."));
     }
 
     // REQUIRES: 0<= col <= 6.
@@ -35,9 +39,15 @@ public class PlayingGrid extends CompletedPlayingGrid {
             player2.checkWin(col, row);
             this.gameOver = player2.getWin();
         }
-
+        this.plays++;
+        this.gameOver = (this.gameOver | isGameDraw());
     }
 
+    public boolean isGameDraw() {
+        return (this.plays >= 42);
+    }
+
+    // REQUIRES: isPlayer1Winner !null
     // EFFECT: creates a CompletedPlayingGrid from the current PlayingGrid grid.
     public CompletedPlayingGrid makeGridCompleted() {
         CompletedPlayingGrid cpg = new CompletedPlayingGrid();
@@ -48,9 +58,17 @@ public class PlayingGrid extends CompletedPlayingGrid {
         cpg.setColumn(4, this.col4);
         cpg.setColumn(5, this.col5);
         cpg.setColumn(6, this.col6);
-        cpg.setWinner(isPlayer1Winner);
+        cpg.setWinner(winner);
 
         return cpg;
+    }
+
+    public String whoWon(boolean playerTurn) {
+        if (isGameDraw()) {
+            return getDrawRepresentation();
+        } else {
+            return getPlayerRepresentation(playerTurn);
+        }
     }
 
     //setters and getters
@@ -67,4 +85,12 @@ public class PlayingGrid extends CompletedPlayingGrid {
     public void setGameOver(boolean status) {
         this.gameOver = status;
     }
+
+
+    // MODIFIES: this
+    // EFFECT: sets the number of plays
+    public void setPlays(int i) {
+        this.plays = i;
+    }
+
 }

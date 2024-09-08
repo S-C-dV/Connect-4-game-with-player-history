@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Player {
 
     private boolean win;
-    private final boolean isPlayer1;
+    private final String player;
 
     private final ArrayList<ArrayList<Integer>> loCols;
 
@@ -19,8 +19,8 @@ public class Player {
     private ArrayList<Integer> col6;
 
     // EFFECT: creates player with isPlayer1 as true or false.
-    public Player(boolean isPlayer1) {
-        this.isPlayer1 = isPlayer1;
+    public Player(String isPlayer1) {
+        this.player = isPlayer1;
 
         this.col0 = new ArrayList<Integer>();
         this.col1 = new ArrayList<Integer>();
@@ -46,6 +46,13 @@ public class Player {
     // EFFECTS: adds a new "coin" to the column specified
     public void addCoin(int col, int row) {
         loCols.get(col).add(row);
+        eventAddedCoin(col);
+    }
+
+    // MODIFIES: EventLog
+    // EFFECTS: creates an event and logs it that this player added a coin to the specified column
+    private void eventAddedCoin(int col) {
+        EventLog.getInstance().logEvent(new Event(player + " added a coin to column " + col));
     }
 
     // REQUIRES: 0<= col <= 6. 0<= row <= 5.
@@ -55,7 +62,14 @@ public class Player {
         if (checkVerticalWin(col, row) || checkHorizontalWin(col, row) || checkUpDiagonalWin(col, row)
                 || checkDownDiagonalWin(col, row)) {
             this.win = true;
+            eventWin();
         }
+    }
+
+    // MODIFIES: EventLog
+    // EFFECT: creates event and logs it that this player won the game
+    private void eventWin() {
+        EventLog.getInstance().logEvent(new Event(player + " won the game!"));
     }
 
 
@@ -176,8 +190,8 @@ public class Player {
     }
 
     // EFFECT: returns isPlayer1
-    public boolean getIsPlayer1() {
-        return this.isPlayer1;
+    public boolean getPlayer() {
+        return this.player == "Player 1";
     }
 }
 

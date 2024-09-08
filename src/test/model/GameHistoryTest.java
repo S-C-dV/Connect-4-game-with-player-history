@@ -24,9 +24,9 @@ public class GameHistoryTest {
         game1 = new PlayingGrid();
         game2 = new PlayingGrid();
 
-        game0.setWinner(true);
-        game1.setWinner(false);
-        game2.setWinner(true);
+        game0.setWinner("Player 1");
+        game1.setWinner("Player 2");
+        game2.setWinner("Player 1");
     }
 
     //constructor
@@ -134,6 +134,41 @@ public class GameHistoryTest {
         test.add(game0);
         assertEquals(1, history.getHistory().size());
         assertEquals(test, history.getHistory());
+    }
+
+    // getWinnerGames
+    // empty list
+    @Test
+    public void testGetWinnerGamesEmpty() {
+        assertEquals(0,history.getHistorySize());
+        ArrayList<CompletedPlayingGrid> test = history.getWinnerGames("Player 2");
+
+        assertTrue(test.isEmpty());
+    }
+    // doens't have our player
+    @Test
+    public void testGetWinnerGamesNotOurs() {
+        history.addGame(game0);
+        history.addGame(game2);
+
+        assertEquals(2,history.getHistorySize());
+        ArrayList<CompletedPlayingGrid> test = history.getWinnerGames("Player 2");
+        assertTrue(test.isEmpty());
+    }
+    // has both
+    @Test
+    public void testGetWinnerGamesHasSome() {
+        history.addGame(game0);
+        history.addGame(game1);
+
+        assertEquals(2,history.getHistorySize());
+        ArrayList<CompletedPlayingGrid> test = history.getWinnerGames("Player 2");
+        assertFalse(test.isEmpty());
+
+        ArrayList<CompletedPlayingGrid> sol = new ArrayList<>();
+        sol.add(game1);
+
+        assertEquals(sol, test);
     }
 
 }

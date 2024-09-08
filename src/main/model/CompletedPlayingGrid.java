@@ -11,7 +11,7 @@ import static java.lang.String.valueOf;
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class CompletedPlayingGrid {
 
-    protected Boolean isPlayer1Winner;
+    protected String winner;
 
     protected ArrayList<Coin> col0;
     protected ArrayList<Coin> col1;
@@ -92,7 +92,7 @@ public class CompletedPlayingGrid {
             jsGrid.put(this.columnToJson(col));
         }
 
-        jsFullGrid.put("isPlayer1Winner", this.isPlayer1Winner);
+        jsFullGrid.put("winner", this.winner);
         jsFullGrid.put("grid", jsGrid);
 
         return jsFullGrid;
@@ -106,10 +106,11 @@ public class CompletedPlayingGrid {
         return loCols.get(col).size();
     }
 
+    // REQUIRES: winner is "Player 1" "Player 2" "neither"
     // MODIFIES: this
     // EFFECT: set the winner
-    public void setWinner(boolean player) {
-        this.isPlayer1Winner = player;
+    public void setWinner(String winner) {
+        this.winner = winner;
     }
 
     // REQUIRES: 0<= col <= 6
@@ -136,7 +137,32 @@ public class CompletedPlayingGrid {
 
     // REQUIRES: a winner has been appointed --> setWinner(boolean) has been called before.
     // EFFECT: returns boolean winner.
-    public boolean getWinner() {
-        return this.isPlayer1Winner;
+    public String getWinner() {
+        return this.winner;
+    }
+
+    public boolean isPlayer1Winner() {
+        return this.winner.equals("Player 1");
+    }
+
+    public boolean isPlayer2Winner() {
+        return this.winner.equals("Player 2");
+    }
+
+    //EFFECT: returns the column at given integer
+    public ArrayList<Coin> getCol(int col) {
+        return this.loCols.get(col);
+    }
+
+    public static String getPlayerRepresentation(boolean turn) {
+        if (turn) {
+            return "Player 1";
+        } else {
+            return "Player 2";
+        }
+    }
+
+    public static String getDrawRepresentation() {
+        return "neither";
     }
 }

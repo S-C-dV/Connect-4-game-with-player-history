@@ -39,7 +39,16 @@ public class PlayingGridTest extends CompletedPlayingGridTest {
 
         assertEquals(1, coin2.getRow());
         assertEquals(false, coin2.getPlayer());
+    }
 
+    // test add coin to reach draw count
+    @Test
+    public void testAddCoinToColDraw() {
+        game.setPlays(41);
+        game.addCoinToCol(1, true);
+
+        assertTrue(game.isGameDraw());
+        assertTrue(game.getGameOver());
     }
 
     // getStatus
@@ -57,6 +66,8 @@ public class PlayingGridTest extends CompletedPlayingGridTest {
         assertTrue(game.getGameOver());
     }
 
+
+
     //makeGridCompleted
     @Test
     public void testMakeGridCompleted() {
@@ -64,7 +75,7 @@ public class PlayingGridTest extends CompletedPlayingGridTest {
         game.addCoinToCol(1, false);
         game.addCoinToCol(0, true);
         game.addCoinToCol(4, false);
-        game.setWinner(true);
+        game.setWinner(game.getPlayerRepresentation(true));
 
         CompletedPlayingGrid completed = game.makeGridCompleted();
 
@@ -75,7 +86,7 @@ public class PlayingGridTest extends CompletedPlayingGridTest {
         assertEquals(2, completed.getColSize(4));
         assertEquals(0, completed.getColSize(5));
         assertEquals(0, completed.getColSize(6));
-        assertTrue(completed.getWinner());
+        assertTrue(completed.isPlayer1Winner());
 
     }
 

@@ -1,5 +1,6 @@
 {"history": [
     {
+        "winner": "Player 2",
         "grid": [
             [],
             [{
@@ -51,10 +52,10 @@
                 }
             ],
             []
-        ],
-        "isPlayer1Winner": false
+        ]
     },
     {
+        "winner": "Player 1",
         "grid": [
             [
                 {
@@ -126,7 +127,6 @@
             ],
             [],
             []
-        ],
-        "isPlayer1Winner": true
+        ]
     }
 ]}

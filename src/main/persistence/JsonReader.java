@@ -63,11 +63,11 @@ public class JsonReader {
     // MODIFIES: history
     // EFFECT: parses single game from JSONObject and adds it to history
     private void addParsedGrid(GameHistory history, JSONObject jsonGrid) {
-        boolean isPlayer1Winner = jsonGrid.getBoolean("isPlayer1Winner");
+        String winner = jsonGrid.getString("winner");
         JSONArray onlyJsonGrid = jsonGrid.getJSONArray("grid");
 
         CompletedPlayingGrid parsedGrid = gridFromJsonArray(onlyJsonGrid);
-        parsedGrid.setWinner(isPlayer1Winner);
+        parsedGrid.setWinner(winner);
 
         history.addGame(parsedGrid);
     }

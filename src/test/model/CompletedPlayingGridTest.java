@@ -53,16 +53,24 @@ public class CompletedPlayingGridTest {
     // setWinner
     @Test
     public void testSetWinnerP1() {
-        game.setWinner(true);
+        game.setWinner("Player 1");
 
-        assertTrue(game.getWinner());
+        assertTrue(game.isPlayer1Winner());
     }
 
     @Test
     public void testSetWinnerP2() {
-        game.setWinner(false);
+        game.setWinner("Player 2");
 
-        assertFalse(game.getWinner());
+        assertTrue(game.isPlayer2Winner());
+    }
+
+    @Test
+    public void testSetWinnerNeither() {
+        game.setWinner("neither");
+
+        assertFalse(game.isPlayer1Winner());
+        assertFalse(game.isPlayer2Winner());
     }
 
 
@@ -93,5 +101,17 @@ public class CompletedPlayingGridTest {
         game.addCoinToCol(2, true);
 
         assertEquals(1, game.getColSize(2));
+    }
+
+    // test getCol
+    @Test
+    public void testGetCol() {
+        game.addCoinToCol(2, true);
+        game.addCoinToCol(2, false);
+
+        ArrayList<Coin> test = game.getCol(2);
+
+        assertEquals(2, test.size());
+        assertTrue(game.getCol(0).isEmpty());
     }
 }

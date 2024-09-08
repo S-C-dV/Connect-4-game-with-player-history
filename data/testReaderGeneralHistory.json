@@ -46,7 +46,7 @@
           }
         ]
       ],
-      "isPlayer1Winner": false
+      "winner": "Player 2"
     },
     {
       "grid": [
@@ -58,7 +58,7 @@
         [],
         []
       ],
-      "isPlayer1Winner": false
+      "winner": "Player 2"
     },
     {
       "grid": [
@@ -139,7 +139,7 @@
         [],
         []
       ],
-      "isPlayer1Winner": false
+      "winner": "Player 2"
     }
   ]
 }
